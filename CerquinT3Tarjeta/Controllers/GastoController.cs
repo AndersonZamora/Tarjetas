@@ -33,10 +33,10 @@ namespace CerquinT3Tarjeta.Controllers
         }
 
         [HttpGet]
-        public ActionResult Crear()
+        public ActionResult Crear(int IdTarjeta)
         {
             var DBContext = new SimuladorContext();
-            ViewBag.Tarjeta = DBContext.Tarjetas;
+            ViewBag.Tarjeta = DBContext.Tarjetas.Where(a => a.IdTarjeta == IdTarjeta);
 
             return View(new Gasto());
         }
