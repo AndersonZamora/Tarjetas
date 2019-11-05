@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<br />
+<br />
+<br />
+<div>
+    <form  action="/Tarjeta/Index" method="get">
+        <input id="buscar" class="form-control" name="criterio" valau="@ViewBag.criterio" />
+        <button class="btn btn-success"> Buscar </button>
+    </form>
+</div>
+<div id="tablaTarjeta">
+
+</div>
+<a class="btn btn-primary float-right" href="/Tarjeta/Crear">Crear</a>
+<script>
+    $("#buscar").keyup(function(e) {
+        llenarTabla();
+    });
+    function llenarTabla(e) {
+        var valor = $("#buscar").val();
+        $.ajax({ url: "/Tarjeta/indexTabla?EntidadFinanciera=" + valor })
+       .done(function (tabla) {
+           $("#tablaTarjeta").html(tabla);
+       });
+    }
+    llenarTabla();
+</script>
+

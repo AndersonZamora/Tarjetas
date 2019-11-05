@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "IndexTabla";
+    Layout = null;
+}
+
+
+<table id="IndexTabla" class="table">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> Entidad Financiera </th>
+            <th> N° Tarjeta </th>
+            <th> Año </th>
+            <th> Mes </th>
+            <th> Gastos</th>
+        </tr>
+
+    </thead>
+
+    <tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td> @item.IdTarjeta </td>
+            <td> @item.EntidadFinanciera </td>
+            <td> @item.NroTarjeta </td>
+            <td> @item.AnoVencimiento </td>
+            <td> @item.MesVencimiento </td>
+            <td>
+                @foreach(var gastos in item.Gastos){
+                <ul>
+                    <h4>GASTOS REALIZADOS</h4>
+                    <li>@gastos.Monto</li>
+                    <li>@gastos.Descripcion</li>
+                    <li>@gastos.Fecha</li>
+                    <hr />
+                </ul>
+                }
+            </td>
+            <td>
+                <a href="/Gasto/Crear" class="btn btn-danger"> Agregar Gasto </a>
+            </td>
+
+        </tr>
+    }
+        <tbody>
+    </table>

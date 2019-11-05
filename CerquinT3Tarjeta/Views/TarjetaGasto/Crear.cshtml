@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Crear</h2>
+
+<form action="/TarjetaGasto/crear" method="post">
+
+    <select id="TarjetaSeleccionar">
+        <option> Seleccione una tarjeta </option>
+        @foreach (var item in ViewBag.Tarjetas)
+        {
+            <option value="@item.Id">@item.EntidadFinanciera</option>
+        }
+    </select>
+
+    <select id="GastoSeleccionar">
+        <option>Seleccione un gasto</option>
+        @foreach (var item in ViewBag.Gastos)
+        {
+            <option value="@item.Id">@item.Descripcion</option>
+        }
+    </select>
+    <a href="#" id="btnAgregar">Agregar</a>
+
+
+    <div id="content">
+
+    </div>
+
+    <br />
+
+    <button>Guardar</button>
+</form>
+
+<script>
+
+
+    var index = 0;
+
+    $("#btnAgregar").click(function (e) {
+        e.preventDefault();
+
+        var GastoIdValue = $("#GastoSeleccionar").val();
+        var TarjetaIdValue = $("#TarjetaSeleccionar").val();
+
+        alert($("#GastoIdValue option:selected").text());
+
+        var row = `<br />
+            <input type="text" value="${GastoIdValue}" name="agregar[${index}].GastoId" />
+            <input type="text" value="${TarjetaIdValue}" name="agregar[${index}].TarjetaId" />`;
+
+        $("#content").append(row);
+
+        index++;
+
+    });
+
+</script>
